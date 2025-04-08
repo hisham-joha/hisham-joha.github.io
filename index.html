@@ -57,6 +57,29 @@
             width: 100%;
             text-align: center;
         }
+        /* Navigation Buttons */
+        .nav-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .nav-buttons button {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .nav-buttons button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
         /* Flash Slide Animation */
         .visible {
             opacity: 1;
@@ -87,14 +110,13 @@
         .project-card {
             background: rgba(255, 255, 255, 0.1);
             padding: 25px;
-            border-radius: 10px; /* Removed border */
+            border-radius: 10px;
             text-align: center;
             transition: all 0.4s ease;
         }
         .project-card:hover {
             transform: translateY(-10px);
             background: rgba(255, 255, 255, 0.15);
-            /* Removed box-shadow */
         }
         .project-card h3 {
             margin-bottom: 15px;
@@ -117,7 +139,7 @@
         .contact-icons a {
             font-size: 2em;
             padding: 10px;
-            border-radius: 50%; /* Removed border */
+            border-radius: 50%;
             transition: all 0.3s ease;
         }
         .contact-icons a:hover {
@@ -158,6 +180,10 @@
                 font-size: 1.5em;
                 padding: 8px;
             }
+            .nav-buttons button {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
         }
         @media (max-width: 480px) {
             header h1 {
@@ -175,6 +201,10 @@
             .contact-icons a {
                 font-size: 1.2em;
             }
+            .nav-buttons button {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
         }
     </style>
 </head>
@@ -184,17 +214,22 @@
         <div class="container">
             <h1>Hisham Joha</h1>
             <p>Spider Web Developer</p>
+            <div class="nav-buttons">
+                <button onclick="scrollToSection('about')">About</button>
+                <button onclick="scrollToSection('projects')">Projects</button>
+                <button onclick="scrollToSection('contact')">Contact</button>
+            </div>
         </div>
     </header>
 
-    <section class="about">
+    <section class="about" id="about">
         <div class="container">
             <h2>About Me</h2>
             <p>I’m Hisham Joha, a passionate web developer with a keen focus on performance, security, and innovation. I bring digital visions to life using Laravel, Node.js, and modern frontend frameworks. I specialize in server deployment, app integration, and real-time systems.</p>
         </div>
     </section>
 
-    <section class="projects">
+    <section class="projects" id="projects">
         <div class="container">
             <h2>Highlighted Project</h2>
             <div class="projects-grid">
@@ -207,7 +242,7 @@
         </div>
     </section>
 
-    <section class="contact">
+    <section class="contact" id="contact">
         <div class="container">
             <h2>Contact</h2>
             <div class="contact-icons">
@@ -294,7 +329,7 @@
         const sections = document.querySelectorAll('header, section, footer');
         const observerOptions = {
             root: null,
-            threshold: 0.5 // Trigger when 50% of the section is visible
+            threshold: 0.5
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -308,6 +343,14 @@
         sections.forEach(section => {
             observer.observe(section);
         });
+
+        // Smooth Scroll to Sections
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
     </script>
 </body>
 </html>
