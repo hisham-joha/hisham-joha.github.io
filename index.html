@@ -28,7 +28,6 @@
             z-index: -1;
             opacity: 0.2;
         }
-        /* Full-screen sections without borders */
         header, section, footer {
             min-height: 100vh;
             display: flex;
@@ -57,7 +56,6 @@
             width: 100%;
             text-align: center;
         }
-        /* Navigation Buttons */
         .nav-buttons {
             margin-top: 30px;
             display: flex;
@@ -80,7 +78,6 @@
             background: rgba(255, 255, 255, 0.2);
             transform: scale(1.05);
         }
-        /* Flash Slide Animation */
         .visible {
             opacity: 1;
             animation: flashSlide 0.8s ease-out;
@@ -150,7 +147,6 @@
             background: rgba(0, 0, 0, 0.95);
             font-size: 0.9em;
         }
-        /* Responsive Design */
         @media (max-width: 768px) {
             header {
                 padding: 40px 15px;
@@ -255,7 +251,7 @@
     </section>
 
     <footer>
-        <p>© 2025 Hisham Joha - All Rights Reserved</p>
+        <p id="copyright">© <span id="year"></span> Hisham Joha - All Rights Reserved</p>
     </footer>
 
     <script>
@@ -351,6 +347,9 @@
                 section.scrollIntoView({ behavior: 'smooth' });
             }
         }
+
+        // Update Year Automatically
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
