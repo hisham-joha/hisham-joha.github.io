@@ -28,7 +28,7 @@
             z-index: -1;
             opacity: 0.2;
         }
-        /* Full-screen sections */
+        /* Full-screen sections without borders */
         header, section, footer {
             min-height: 100vh;
             display: flex;
@@ -38,14 +38,8 @@
             padding: 20px;
             position: relative;
             z-index: 1;
-        }
-        header {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-            animation: slideIn 1s ease-out;
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
         header h1 {
             font-size: 3.5em;
@@ -63,21 +57,18 @@
             width: 100%;
             text-align: center;
         }
-        /* Animation for About Section */
-        .about {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
-            padding: 30px;
-            animation: expandIn 1s ease-out forwards;
+        /* Flash Slide Animation */
+        .visible {
+            opacity: 1;
+            animation: flashSlide 0.8s ease-out;
         }
-        @keyframes expandIn {
-            0% { opacity: 0; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1); }
+        @keyframes flashSlide {
+            0% { opacity: 0; transform: translateY(50px); }
+            50% { opacity: 1; background: rgba(255, 255, 255, 0.2); }
+            100% { opacity: 1; transform: translateY(0); background: rgba(255, 255, 255, 0.05); }
         }
-        section:not(.about) {
+        section {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 12px;
             padding: 30px;
         }
@@ -96,15 +87,14 @@
         .project-card {
             background: rgba(255, 255, 255, 0.1);
             padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
+            border-radius: 10px; /* Removed border */
             text-align: center;
             transition: all 0.4s ease;
         }
         .project-card:hover {
             transform: translateY(-10px);
             background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+            /* Removed box-shadow */
         }
         .project-card h3 {
             margin-bottom: 15px;
@@ -127,8 +117,7 @@
         .contact-icons a {
             font-size: 2em;
             padding: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
+            border-radius: 50%; /* Removed border */
             transition: all 0.3s ease;
         }
         .contact-icons a:hover {
@@ -136,7 +125,6 @@
             transform: scale(1.1);
         }
         footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.5);
             background: rgba(0, 0, 0, 0.95);
             font-size: 0.9em;
         }
@@ -302,13 +290,23 @@
         }
         animate();
 
-        // Trigger animation for About section on scroll
-        window.addEventListener('scroll', () => {
-            const aboutSection = document.querySelector('.about');
-            const rect = aboutSection.getBoundingClientRect();
-            if (rect.top <= window.innerHeight * 0.75 && rect.bottom >= 0) {
-                aboutSection.style.animation = 'expandIn 1s ease-out forwards';
-            }
+        // Flash Slide Effect on Scroll
+        const sections = document.querySelectorAll('header, section, footer');
+        const observerOptions = {
+            root: null,
+            threshold: 0.5 // Trigger when 50% of the section is visible
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
         });
     </script>
 </body>
