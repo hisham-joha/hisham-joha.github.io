@@ -1,165 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hisham Joha - Spider Web Developer</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Courier New', Courier, monospace;
-    }
-    body {
-      background: #000;
-      color: #fff;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    .web-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 1%, transparent 20%);
-      z-index: -1;
-      pointer-events: none;
-    }
-    header {
-      text-align: center;
-      padding: 60px 20px;
-      border-bottom: 1px solid #fff;
-    }
-    header h1 {
-      font-size: 3em;
-      text-transform: uppercase;
-      letter-spacing: 5px;
-    }
-    header p {
-      font-size: 1.2em;
-      opacity: 0.8;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-    section {
-      margin: 60px 0;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #fff;
-      border-radius: 5px;
-    }
-    h2 {
-      font-size: 2em;
-      margin-bottom: 20px;
-      text-align: center;
-      text-transform: uppercase;
-    }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-    .project-card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 20px;
-      border: 1px solid #fff;
-      border-radius: 5px;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-    .project-card:hover {
-      transform: scale(1.05);
-    }
-    a {
-      color: #fff;
-      text-decoration: none;
-      border-bottom: 1px dotted #fff;
-    }
-    a:hover {
-      color: #ccc;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      border-top: 1px solid #fff;
-      background: rgba(0, 0, 0, 0.9);
-    }
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2em;
-      }
-      header p {
-        font-size: 1em;
-      }
-      .container {
-        padding: 20px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hisham Joha - Spider Web Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto Mono', monospace;
+        }
+        body {
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.2;
+        }
+        /* Full-screen sections */
+        header, section, footer {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            animation: slideIn 1s ease-out;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        header h1 {
+            font-size: 3.5em;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            font-weight: 700;
+        }
+        header p {
+            font-size: 1.3em;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            text-align: center;
+        }
+        /* Animation for About Section */
+        .about {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            animation: expandIn 1s ease-out forwards;
+        }
+        @keyframes expandIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        section:not(.about) {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+        }
+        h2 {
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            width: 100%;
+        }
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+        }
+        .project-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #ddd;
+        }
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .contact-icons a {
+            font-size: 2em;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        .contact-icons a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(0, 0, 0, 0.95);
+            font-size: 0.9em;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 15px;
+            }
+            header h1 {
+                font-size: 2.2em;
+                letter-spacing: 4px;
+            }
+            header p {
+                font-size: 1em;
+            }
+            section {
+                padding: 20px;
+            }
+            h2 {
+                font-size: 1.8em;
+                letter-spacing: 2px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .project-card {
+                padding: 20px;
+            }
+            .contact-icons a {
+                font-size: 1.5em;
+                padding: 8px;
+            }
+        }
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            header p {
+                font-size: 0.9em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            .project-card h3 {
+                font-size: 1.3em;
+            }
+            .contact-icons a {
+                font-size: 1.2em;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="web-bg"></div>
-  <header>
-    <h1>Hisham Joha</h1>
-    <p>Spider Web Developer</p>
-  </header>
+    <canvas id="webCanvas"></canvas>
+    <header>
+        <div class="container">
+            <h1>Hisham Joha</h1>
+            <p>Spider Web Developer</p>
+        </div>
+    </header>
 
-  <div class="container">
     <section class="about">
-      <h2>About Me</h2>
-      <p>I’m Hisham Joha, a web developer with a deep focus on building scalable Laravel applications, securing server environments, and delivering real-time solutions. I specialize in Laravel, WebSockets, aaPanel server management, Cloudflare integrations, and modern monitoring using Grafana and Prometheus. I also stream PUBG content on TikTok and bring energy to every digital space I touch.</p>
-    </section>
-
-    <section class="skills">
-      <h2>Skills & Experience</h2>
-      <ul>
-        <li>✅ Laravel + WebSockets Integration</li>
-        <li>✅ Cloudflare Proxy & SSL Configuration</li>
-        <li>✅ Supervisor & Artisan CLI Management</li>
-        <li>✅ Email System Security & SMTP Hardening</li>
-        <li>✅ Server Monitoring with Prometheus, Grafana & Node Exporter</li>
-        <li>✅ Zabbix Integration with Prometheus</li>
-        <li>✅ aaPanel for Server Setup & Management</li>
-        <li>✅ Live Streaming on TikTok (PUBG Gameplay)</li>
-      </ul>
+        <div class="container">
+            <h2>About Me</h2>
+            <p>I’m Hisham Joha, a passionate web developer with a keen focus on performance, security, and innovation. I bring digital visions to life using Laravel, Node.js, and modern frontend frameworks. I specialize in server deployment, app integration, and real-time systems.</p>
+        </div>
     </section>
 
     <section class="projects">
-      <h2>Highlighted Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>Realtime Web Platform</h3>
-          <p>Developed a Laravel-based WebSocket application running via Supervisor with Cloudflare proxy support.</p>
-          <a href="#">View Details</a>
+        <div class="container">
+            <h2>Highlighted Project</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>MnBaladna.com Platform</h3>
+                    <p>Developed and managed a complete Laravel-based eCommerce and marketplace system for MnBaladna.com. The platform integrates real-time apps, a custom CMS, secure mail, WebSocket-based live notifications, and API endpoints for mobile apps.</p>
+                    <a href="https://mnbaladna.com" target="_blank">Visit MnBaladna</a>
+                </div>
+            </div>
         </div>
-        <div class="project-card">
-          <h3>Secure Mail Server</h3>
-          <p>Configured a fully secure email system using SSL, custom ports, and spam queue control on a Contabo VPS.</p>
-          <a href="#">View Details</a>
-        </div>
-        <div class="project-card">
-          <h3>Server Monitoring Suite</h3>
-          <p>Created an advanced monitoring dashboard with Grafana, Prometheus, Node Exporter, and Zabbix.</p>
-          <a href="#">View Details</a>
-        </div>
-      </div>
     </section>
 
     <section class="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:h.joha@mnbaladna.com">hisham@joha.dev</a></p>
-      <p>GitHub: <a href="https://github.com/hisham-joha" target="_blank">github.com/hisham-joha</a></p>
-      <p>TikTok: <a href="https://www.tiktok.com/@hishamjoha" target="_blank">@hisham.joha</a></p>
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="contact-icons">
+                <a href="mailto:joha.webdev@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/hisham-joha" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://facebook.com/hishamjoha" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://instagram.com/hishamjoha" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
     </section>
-  </div>
 
-  <footer>
-    <p>© 2025 Hisham Joha - All Rights Reserved</p>
-  </footer>
+    <footer>
+        <p>© 2025 Hisham Joha - All Rights Reserved</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('webCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        const particles = [];
+        for (let i = 0; i < 50; i++) {
+            particles.push(new Particle());
+        }
+
+        function connectParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 100) {
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 100})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            connectParticles();
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Trigger animation for About section on scroll
+        window.addEventListener('scroll', () => {
+            const aboutSection = document.querySelector('.about');
+            const rect = aboutSection.getBoundingClientRect();
+            if (rect.top <= window.innerHeight * 0.75 && rect.bottom >= 0) {
+                aboutSection.style.animation = 'expandIn 1s ease-out forwards';
+            }
+        });
+    </script>
 </body>
 </html>
