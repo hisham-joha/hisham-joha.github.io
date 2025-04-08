@@ -208,7 +208,7 @@
     <canvas id="webCanvas"></canvas>
     <header>
         <div class="container">
-            <h1>Hisham Joha</h1>
+            <h1 id="typed-title">Hisham Joha</h1>
             <p>Spider Web Developer</p>
             <div class="nav-buttons">
                 <button onclick="scrollToSection('about')">About</button>
@@ -350,6 +350,25 @@
 
         // Update Year Automatically
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Typewriter Effect for Title
+        const titleElement = document.getElementById('typed-title');
+        const titleText = titleElement.textContent;
+        titleElement.textContent = ''; // Clear the text initially
+        let i = 0;
+
+        function typeWriter() {
+            if (i < titleText.length) {
+                titleElement.textContent += titleText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 150); // Adjust speed here (150ms per character)
+            }
+        }
+
+        // Start the typewriter effect when the page loads
+        window.onload = function() {
+            typeWriter();
+        };
     </script>
 </body>
 </html>
