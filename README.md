@@ -1,30 +1,88 @@
-# Hisham Joha Portfolio
+# Hisham Joha — Portfolio
 
-Welcome to my personal portfolio website hosted at [hisham-joha.github.io](https://hisham-joha.github.io). This project showcases my skills as a web developer with a modern, interactive design inspired by a "Spider Web" theme.
+Personal portfolio website of **Hisham Joha**, Full-Stack Web Developer based in Heerlen, Netherlands.
 
-## Overview
+🌐 **Live:** [hisham-joha.github.io](https://hisham-joha.github.io)
 
-This portfolio is a single-page application built with HTML, CSS, and JavaScript. It features a full-screen layout with smooth scrolling, a dynamic spider web background, and interactive navigation buttons. The content highlights my background, a key project, and contact information.
+---
 
-### Features
-- **Full-Screen Sections**: Each section (Home, About, Projects, Contact, Footer) occupies the entire viewport.
-- **Dynamic Spider Web Background**: A moving spider web effect created with HTML5 Canvas and JavaScript.
-- **Flash Slide Transitions**: Smooth animations between sections triggered by scrolling.
-- **Navigation Buttons**: Three buttons in the header for quick access to About, Projects, and Contact sections.
-- **Responsive Design**: Fully optimized for mobile, tablet, and desktop devices.
-- **Auto-Updating Year**: The copyright year in the footer updates automatically based on the current year.
+## About
 
-## Technologies Used
-- **HTML5**: Structure of the page.
-- **CSS3**: Styling, animations, and responsive design.
-- **JavaScript**: Dynamic background, scroll effects, and smooth navigation.
-- **Font Awesome**: Icons for contact links.
-- **Google Fonts**: Roboto Mono font for a modern, developer-friendly look.
+A single-page portfolio built with pure HTML, CSS, and JavaScript — no frameworks, no build tools. Designed with a dark developer aesthetic, animated particle background, smooth scroll reveals, and a fully responsive layout.
 
-## Setup Instructions
-To run this project locally or deploy it to your own GitHub Pages:
+---
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/hisham-joha/hisham-joha.github.io.git
-   cd hisham-joha.github.io
+## Sections
+
+| # | Section | Description |
+|---|---------|-------------|
+| 01 | **About** | Background, location, languages, and tech stack overview |
+| 02 | **Skills** | Animated skill bars across Backend, Frontend, Database, and DevOps |
+| 03 | **Experience** | Work history timeline from 2018 to present |
+| 04 | **Projects** | Featured projects with live links |
+| 05 | **Contact** | Contact links and mailto form |
+
+---
+
+## Featured Projects
+
+- **[MnBaladna.com](https://mnbaladna.com)** — Laravel eCommerce & multi-vendor marketplace
+- **[MnBaladna Help Center](https://help.mnbaladna.com)** — AI-powered support portal with knowledge base & FAQ
+- **MnBaladna Mobile Apps** — Flutter Android apps on Google Play (Customer · Store · Delivery)
+- **[MnBaladna Web](https://web.mnbaladna.com)** — Flutter Web client
+- **Custom CMS & Admin Dashboard** — Laravel + Livewire real-time panel
+- **Mail Server Setup** — Linux Postfix/Dovecot with SPF, DKIM, DMARC
+
+---
+
+## Tech Stack
+
+**Backend:** Laravel · PHP · Node.js · Express.js · REST API · WebSocket
+**Frontend:** HTML5 · CSS3 · JavaScript (ES6+) · Alpine.js · Livewire · Blade · Flutter
+**Database:** MySQL · Redis
+**Infrastructure:** Linux · Nginx · Docker · cPanel · Postfix · Dovecot
+
+---
+
+## Features
+
+- Animated particle canvas background
+- Typing animation in hero (cycles through developer roles)
+- Scroll-reveal animations on all sections
+- Animated skill bars triggered on scroll
+- Active nav link highlighting per section
+- Back-to-top button
+- Fully responsive (mobile, tablet, desktop)
+- SEO meta tags + Open Graph + Twitter Card
+- Auto-updating copyright year
+
+---
+
+## Structure
+
+```
+hisham-joha.github.io/
+└── index.html   # Single file — all HTML, CSS, and JS
+```
+
+---
+
+## Local Setup
+
+```bash
+git clone https://github.com/hisham-joha/hisham-joha.github.io.git
+cd hisham-joha.github.io
+# Open index.html in any browser — no build step required
+```
+
+---
+
+## Contact
+
+- **Email:** h.joha@hotmail.com
+- **GitHub:** [github.com/hisham-joha](https://github.com/hisham-joha)
+- **LinkedIn:** [linkedin.com/in/hishamjoha](https://linkedin.com/in/hishamjoha)
+
+---
+
+© 2026 Hisham Joha — All Rights Reserved
