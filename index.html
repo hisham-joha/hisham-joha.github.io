@@ -101,9 +101,48 @@
             position: relative; z-index: 1;
         }
         .hero-inner {
-            max-width: 900px;
+            max-width: 1100px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 72px;
             text-align: left;
         }
+        .hero-content { flex: 1; min-width: 0; }
+        .hero-photo-wrap {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            opacity: 0;
+            animation: fadeUp 0.7s 0.2s forwards;
+        }
+        .hero-avatar {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid transparent;
+            background:
+                linear-gradient(var(--card), var(--card)) padding-box,
+                linear-gradient(135deg, var(--accent2), var(--green)) border-box;
+            box-shadow: 0 0 40px rgba(74,158,255,0.20), 0 8px 32px rgba(0,0,0,0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .hero-avatar:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 60px rgba(74,158,255,0.35), 0 12px 40px rgba(0,0,0,0.5);
+        }
+        .hero-avatar-label {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.78em;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .hero-avatar-label i { color: var(--green); font-size: 0.9em; }
         .hero-tag {
             font-family: 'Fira Code', monospace;
             color: var(--green);
@@ -542,6 +581,12 @@
             .hamburger { display: flex; }
             section { padding: 80px 24px; }
             #hero { padding: 100px 24px 60px; }
+            .hero-inner { flex-direction: column-reverse; gap: 36px; text-align: center; }
+            .hero-content { text-align: center; }
+            .hero-desc { margin-left: auto; margin-right: auto; }
+            .hero-btns { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .hero-avatar { width: 160px; height: 160px; }
             .about-grid { grid-template-columns: 1fr; gap: 36px; }
             .contact-wrapper { grid-template-columns: 1fr; gap: 36px; }
             footer { padding: 24px; flex-direction: column; align-items: flex-start; }
@@ -631,32 +676,47 @@
 <!-- HERO -->
 <section id="hero">
     <div class="hero-inner">
-        <span class="hero-tag">// Hello, World! — Welcome to my portfolio</span>
-        <h1>I'm <span class="name">Hisham Joha</span>,<br><span id="typing-role"></span><span class="typing-cursor"></span></h1>
-        <p class="hero-subtitle">
-            Building <strong>scalable web platforms</strong> with Laravel, Node.js &amp; modern real-time systems.
-        </p>
-        <p class="hero-desc">
-            Passionate about performance, security, and clean architecture. I turn complex requirements into robust,
-            production-ready applications — from API design to server deployment.
-        </p>
-        <div class="hero-btns">
-            <a href="#projects" class="btn btn-primary"><i class="fas fa-code"></i> View My Work</a>
-            <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Get in Touch</a>
+        <!-- Text content -->
+        <div class="hero-content">
+            <span class="hero-tag">// Hello, World! — Welcome to my portfolio</span>
+            <h1>I'm <span class="name">Hisham Joha</span>,<br><span id="typing-role"></span><span class="typing-cursor"></span></h1>
+            <p class="hero-subtitle">
+                Building <strong>scalable web platforms</strong> with Laravel, Node.js &amp; modern real-time systems.
+            </p>
+            <p class="hero-desc">
+                Passionate about performance, security, and clean architecture. I turn complex requirements into robust,
+                production-ready applications — from API design to server deployment.
+            </p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn btn-primary"><i class="fas fa-code"></i> View My Work</a>
+                <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Get in Touch</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-num">5+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">20+</div>
+                    <div class="stat-label">Projects Delivered</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">10+</div>
+                    <div class="stat-label">Technologies</div>
+                </div>
+            </div>
         </div>
-        <div class="hero-stats">
-            <div class="stat">
-                <div class="stat-num">5+</div>
-                <div class="stat-label">Years Experience</div>
-            </div>
-            <div class="stat">
-                <div class="stat-num">20+</div>
-                <div class="stat-label">Projects Delivered</div>
-            </div>
-            <div class="stat">
-                <div class="stat-num">10+</div>
-                <div class="stat-label">Technologies</div>
-            </div>
+        <!-- Profile photo from GitHub -->
+        <div class="hero-photo-wrap">
+            <img
+                src="https://github.com/hisham-joha.png"
+                alt="Hisham Joha"
+                class="hero-avatar"
+                loading="eager"
+            >
+            <span class="hero-avatar-label">
+                <i class="fab fa-github"></i> hisham-joha
+            </span>
         </div>
     </div>
     <div class="scroll-hint">
